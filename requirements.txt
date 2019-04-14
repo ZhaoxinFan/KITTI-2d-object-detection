@@ -1,0 +1,33 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+anaconda=custom=py36h363777c_0
+certifi=2019.3.9=py36_0
+cffi=1.12.2=py36hb32ad35_1
+cudatoolkit=9.0=1
+freetype=2.10.0=h5db478b_0
+intel-openmp=2019.3=203
+jpeg=9c=hfa6e2cd_1001
+libblas=3.8.0=4_mkl
+libcblas=3.8.0=4_mkl
+liblapack=3.8.0=4_mkl
+libpng=1.6.36=h7602738_1000
+libtiff=4.0.10=h36446d0_1001
+mkl=2019.1=144
+ninja=1.9.0=h1ad3211_0
+numpy=1.16.2=py36h8078771_1
+olefile=0.46=py_0
+pillow=6.0.0=py36h9a613e6_0
+pip=19.0.3=py36_0
+pycparser=2.19=py36_1
+python=3.6.7=he025d50_1004
+pytorch=1.0.1=py3.6_cuda90_cudnn7_1
+setuptools=41.0.0=py36_0
+six=1.12.0=py36_1000
+tk=8.6.9=hfa6e2cd_1001
+torchvision=0.2.2=py_3
+vc=14=0
+vs2015_runtime=14.0.25420=0
+wheel=0.33.1=py36_0
+wincertstore=0.2=py36_1002
+zlib=1.2.11=h2fa13f4_1004
