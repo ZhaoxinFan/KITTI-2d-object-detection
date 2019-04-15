@@ -12,6 +12,7 @@ from random import shuffle
 from PIL import Image
 import matplotlib.pyplot as plt
 import utils
+import cv2
 
 class KITTI2D(Dataset):
     
@@ -50,16 +51,27 @@ class KITTI2D(Dataset):
     def _get_img_path(self, index):
         return "{}/{}".format(self.image_dir, self.image_filenames[index])
     
-    def _read_image(self, index):
+    def _read_image(self, index, transform_image=False):
         # read the file and return the label
         img_path = self._get_img_path(index)
-        image = Image.open(img_path)
+#        image = Image.open(img_path)
+#        
+#        # Convert grayscale images to rgb
+#        if (image.mode != "RGB"):
+#            image = image.convert(mode = "RGB")
+#            
+#        if transform_image:
+#            image = self.image_transforms(image)
         
-        # Convert grayscale images to rgb
-        if (image.mode != "RGB"):
-            image = image.convert(mode = "RGB")
+        image = cv2.imread(str(img_path))
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
+        if transform_image:
+            image = self.image_transforms(image)
             
-        return np.array(image)
+        return image
+            
+        #return np.array(image)
     
     
     def _read_label(self, index):
@@ -109,6 +121,11 @@ class KITTI2D(Dataset):
         
         image_id = image_filename.split(".")[0]
         return "{}/{}.txt".format(self.label_dir, image_id)
+    
+    
+    def _get_annotation(self, index):
+        bbox, gt = self._read_label(index)
+        return self._get_label_filename(index), bbox, gt, np.zeros(gt.shape).astype(np.int64)
     
     
 # Test here

@@ -22,9 +22,9 @@ class TrainAugmentation:
         self.augment = Compose([
             ConvertFromInts(),
             PhotometricDistort(),
-            #Expand(self.mean),
-            #RandomSampleCrop(),
-            #RandomMirror(),
+            Expand(self.mean),
+            RandomSampleCrop(),
+            RandomMirror(),
             ToPercentCoords(),
             Resize(self.size),
             SubtractMeans(self.mean),

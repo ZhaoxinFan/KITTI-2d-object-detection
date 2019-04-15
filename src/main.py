@@ -115,16 +115,18 @@ def main():
     train_transform = TrainAugmentation(config.image_size, config.image_mean, config.image_std)
     target_transform = MatchPrior(config.priors, config.center_variance,
                                   config.size_variance, 0.5)
+    test_transform = TestTransform(config.image_size, config.image_mean, config.image_std)
 
-    kitti_train = KITTI2D("../data/train/images/", "../data/train/labels/", fraction= 0.3, 
+    kitti_train = KITTI2D("../data/train/images/", "../data/train/labels/", fraction= 0.5, 
                 train=True, 
                 image_transforms=train_transform,
                 target_transforms = target_transform)
     
-    kitti_valid = KITTI2D("../data/train/images/", "../data/train/labels/", fraction= 0.3, 
+    kitti_valid = KITTI2D("../data/train/images/", "../data/train/labels/", fraction= 0.5, 
                 train=False, 
-                image_transforms=train_transform,
+                image_transforms=test_transform,
                 target_transforms = target_transform)
+    
     
     train_loader = DataLoader(kitti_train, 16,
                               num_workers=0,
@@ -133,13 +135,13 @@ def main():
     valid_loader = DataLoader(kitti_valid, 16,
                               num_workers=0,
                               shuffle=True)
-    
+    print(len(train_loader.dataset), len(valid_loader.dataset))
     params = [
             {'params': net.base_net.parameters(), 'lr': 0.001},
             {'params': itertools.chain(
                 net.source_layer_add_ons.parameters(),
                 net.extras.parameters()
-            ), 'lr': 0.001},
+            ), 'lr': 0.01},
             {'params': itertools.chain(
                 net.regression_headers.parameters(),
                 net.classification_headers.parameters()
@@ -157,13 +159,13 @@ def main():
     optimizer = torch.optim.SGD(params, lr=0.001, momentum=0.9,
                                 weight_decay=0.001)
     
-    for epoch in range(1):
+    for epoch in range(10):
         train(train_loader, net, criterion, optimizer,
               device=DEVICE, debug_steps=1)
         
         test(valid_loader, net, criterion, DEVICE)
     
-    model_path = os.path.join("../models/vgg", "model-1.pth")
+    model_path = os.path.join("../models/vgg", "model-2.pth")
     net.save(model_path)
 
 if __name__ == '__main__':
