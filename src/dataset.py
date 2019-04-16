@@ -34,7 +34,7 @@ class KITTI2D(Dataset):
         self.split_ratio = split_ratio
         self.train = train
         self.image_filenames = []
-        self.max_objects = 50
+        self.max_objects = max_objects
         self.state_variables = {"w":0, "h":0, "pad": (0, 0), "padded_h":0, "padded_w":0 }
         self._load_filenames()
         
@@ -168,11 +168,11 @@ class KITTI2D(Dataset):
     
     
 # Test here
-kitti = KITTI2D("../data/train/images/", "../data/train/yolo_labels/", fraction= 1.0, train=True)
-img_path, img, labels = kitti.__getitem__(4000)
-print(img_path, img, labels)
-plt.imshow(img.permute(1, 2, 0))
-plt.show()
+#kitti = KITTI2D("../data/train/images/", "../data/train/yolo_labels/", fraction= 1.0, train=True)
+#img_path, img, labels = kitti.__getitem__(4000)
+#print(img_path, img, labels)
+#plt.imshow(img.permute(1, 2, 0))
+#plt.show()
 
 
 
