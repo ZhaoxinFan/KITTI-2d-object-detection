@@ -36,6 +36,7 @@ def parse_model_config(path):
             module_defs[-1][key.rstrip()] = value.strip()
     return module_defs
 
+
 def parse_data_config(path):
     """
         Parses the data configuration file

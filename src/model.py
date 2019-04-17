@@ -3,6 +3,11 @@
 Created on Tue Apr 16 12:55:38 2019
 
 @author: Keshik
+
+Source
+    https://github.com/packyan/PyTorch-YOLOv3-kitti
+    
+Note: This code is entirely adapted from the above source
 """
 
 from __future__ import division
@@ -25,7 +30,15 @@ import matplotlib.patches as patches
 
 def create_modules(module_defs):
     """
-    Constructs module list of layer blocks from module configuration in module_defs
+        Constructs module list of layer blocks from module configuration in module_defs
+        
+        Args
+            module_defs: list defining the modules/ building blocks
+        
+        Returns
+            hyperparams
+            module list
+        
     """
     hyperparams = module_defs.pop(0)
     output_filters = [int(hyperparams["channels"])]
