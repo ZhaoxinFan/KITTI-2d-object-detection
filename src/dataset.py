@@ -245,8 +245,10 @@ class KITTI2D(Dataset):
     
     def _augment_image(self, image):
         """
-            Augment a single image
-                
+            Augment a single image.
+            Uses https://github.com/aleju/imgaug library
+            Included in requirements (Do not attempt to manually install, use pip install - requirements.txt)
+            
             Args
                 image (np array): 3-dimensional np image array
             
