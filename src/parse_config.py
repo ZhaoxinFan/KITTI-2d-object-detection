@@ -3,10 +3,21 @@
 Created on Tue Apr 16 12:48:04 2019
 
 @author: Keshik
+
+Source: https://github.com/eriklindernoren/PyTorch-YOLOv3
 """
 
 def parse_model_config(path):
-    """Parses the yolo-v3 layer configuration file and returns module definitions"""
+    """
+        Parses the yolo-v3 layer configuration file and returns module definitions
+        
+        Args
+            path: configuration file path
+            
+        Returns
+            Module definition as a list
+    
+    """
     file = open(path, 'r')
     lines = file.read().split('\n')
     lines = [x for x in lines if x and not x.startswith('#')]
@@ -25,7 +36,16 @@ def parse_model_config(path):
     return module_defs
 
 def parse_data_config(path):
-    """Parses the data configuration file"""
+    """
+        Parses the data configuration file
+        
+        Args
+            path: data configuration file path
+        
+        Returns
+            dictionary containing training options
+            
+    """
     options = dict()
     options['gpus'] = '0,1,2,3'
     options['num_workers'] = '10'
