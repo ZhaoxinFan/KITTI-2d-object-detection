@@ -14,7 +14,7 @@ import torch
 from torch.autograd import Variable
 import gc
 import torch
-import csv
+import os
 
 def train(model, 
           device, 
@@ -43,26 +43,26 @@ def train(model,
     """
     
     model.train(True)
+    scheduler.step()
     
     if freeze_darknet:
+        print("Frezezing backbone...")
         for i, (name, p) in enumerate(model.named_parameters()):
             if int(name.split('.')[1]) < 75:  # if layer < 75
                 p.requires_grad = False
-        else:
-            for i, (name, p) in enumerate(model.named_parameters()):
-                if int(name.split('.')[1]) < 75:  # if layer < 75
-                    p.requires_grad = True
+    else:
+        for i, (name, p) in enumerate(model.named_parameters()):
+            if int(name.split('.')[1]) < 75:  # if layer < 75
+                p.requires_grad = True
                     
    
     # set gradients to zero
     optimizer.zero_grad()
     
-    b_seen = 0
     for i, (img_paths, images, labels) in enumerate(tqdm.tqdm(train_dataloader)):
         images = Variable(images.type(tensor_type))
         labels = Variable(labels.type(tensor_type), requires_grad=False)
         
-        b_seen += 1
         # Calculate loss
         loss = model(images, labels)
         
@@ -244,7 +244,7 @@ def validation(model,
     #writer = csv.writer(csv_log_file)
     csv_log_file.writerow(ap_list)
     
-    return model
+    return model, mAP
 
 
 def train_model(model, 
@@ -255,42 +255,56 @@ def train_model(model,
           valid_dataloader,
           csv_log_file_train,
           csv_log_file_valid,
+          weights_path,
           max_epochs = 10,
           tensor_type=torch.cuda.FloatTensor,
           update_gradient_samples = 16, 
-          freeze_darknet=False):
+          freeze_darknet=False,
+          freeze_epoch = -1):
     
+    best_mAP = 0.0
     
     for i in range(0, max_epochs):
-        model = train(model, 
-              device, 
-              optimizer, 
-              scheduler, 
-              train_dataloader, 
-              csv_log_file_train,
-              tensor_type=torch.cuda.FloatTensor,
-              update_gradient_samples = 16, 
-              freeze_darknet=False)
+        print("--------Epoch {}--------".format(i+1))
+        if (freeze_darknet and freeze_epoch != -1) and (i+1 >= freeze_epoch):
+            model = train(model, 
+                      device, 
+                      optimizer, 
+                      scheduler, 
+                      train_dataloader, 
+                      csv_log_file_train,
+                      tensor_type=torch.cuda.FloatTensor,
+                      update_gradient_samples = 16, 
+                      freeze_darknet=freeze_darknet)
+        else:
+            model = train(model, 
+                      device, 
+                      optimizer, 
+                      scheduler, 
+                      train_dataloader, 
+                      csv_log_file_train,
+                      tensor_type=torch.cuda.FloatTensor,
+                      update_gradient_samples = 16, 
+                      freeze_darknet=False)
+                
         
         
-        model = validation(model, 
+        model, mAP = validation(model, 
             device, 
             valid_dataloader, 
             csv_log_file_valid,
             tensor_type=torch.cuda.FloatTensor,
             num_classes = 8)
         
+        # save casual weights here
+        model.save_weights(os.path.join(weights_path, "weights_kitti-epoch-{}.pth".format(i+1)))
         
+        # update mAP
+        if mAP > best_mAP:
+            best_mAP = mAP
+            print("Saving best weights")
+            model.save_weights(os.path.join(weights_path, "best_weights_kitti.pth"))
     
         
-        
-        
-    
-    
-    
-    
-    
-    
-    
     
 
