@@ -49,8 +49,8 @@ num_classes = 8
 model = Darknet("../config/yolov3-kitti.cfg")
 #model.apply(weights_init_normal)
 print("Loading imagenet weights to darknet")
-model.load_weights("../checkpoints/darknet53.conv.74")
-#model.load_weights("../checkpoints/kitti.pth")
+#model.load_weights("../checkpoints/darknet53.conv.74")
+model.load_weights("../checkpoints/kitti.pth")
 #model.save_weights("../checkpoints/tkitti.pth")
 #model.load_state_dict(torch.load(os.path.join("../checkpoints/", "kitti.pth")))
 # move model to device
@@ -157,7 +157,7 @@ for epoch in range(5):
     all_annotations = []
     
     model.train(False)
-    for batch_i, (_, images, labels) in enumerate(tqdm.tqdm(valid_dataloader, desc="Detecting objects")):
+    for batch_i, (_, images, labels) in enumerate(tqdm.tqdm(train_dataloader, desc="Detecting objects")):
 
         images = Variable(images.type(Tensor))
 
