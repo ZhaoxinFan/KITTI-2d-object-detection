@@ -3,21 +3,30 @@
 Created on Sun Apr 14 14:46:27 2019
 
 @author: Keshik
+
+Sources: 
+    https://github.com/eriklindernoren/PyTorch-YOLOv3
+    https://github.com/rbgirshick/py-faster-rcnn.
 """
 
 from __future__ import division
 import math
-import time
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
-
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+
 def weights_init_normal(m):
+    """
+        Initialize model weights using a gaussian normal distribution
+        
+        Args:
+            m: pytorch model
+    """
     classname = m.__class__.__name__
     if classname.find("Conv") != -1:
         torch.nn.init.normal_(m.weight.data, 0.0, 0.02)
@@ -28,7 +37,8 @@ def weights_init_normal(m):
         
 def load_classes(path):
     """
-    Loads class labels at 'path'
+        Loads class labels at path
+    
     """
     fp = open(path, "r")
     names = fp.read().split("\n")[:-1]
@@ -36,13 +46,16 @@ def load_classes(path):
 
 
 def compute_ap(recall, precision):
-    """ Compute the average precision, given the recall and precision curves.
+    """ 
+    Compute the average precision, given the recall and precision curves.
     Code originally from https://github.com/rbgirshick/py-faster-rcnn.
-    # Arguments
-        recall:    The recall curve (list).
-        precision: The precision curve (list).
-    # Returns
-        The average precision as computed in py-faster-rcnn.
+    
+        Args
+            recall:    The recall curve (list).
+            precision: The precision curve (list).
+    
+        Returns
+            The average precision as computed in py-faster-rcnn.
     """
     # correct AP calculation
     # first append sentinel values at the end
@@ -64,7 +77,15 @@ def compute_ap(recall, precision):
 
 def bbox_iou(box1, box2, x1y1x2y2=True):
     """
-    Returns the IoU of two bounding boxes
+        Find the IoU of two bounding boxes
+        
+        Args
+            box1 (np array): numpy array encoding box1
+            box2 (np array): numpy array encoding box2
+            x1y1x2y2 (bool): True if coordinate format is used and not yolo format
+            
+        Returns:
+            IoU of box1 and box2
     """
     if not x1y1x2y2:
         # Transform from center and width to exact coordinates
@@ -96,17 +117,16 @@ def bbox_iou(box1, box2, x1y1x2y2=True):
 
 
 def bbox_iou_numpy(box1, box2):
-    """Computes IoU between bounding boxes.
-    Parameters
-    ----------
-    box1 : ndarray
-        (N, 4) shaped array with bboxes
-    box2 : ndarray
-        (M, 4) shaped array with bboxes
-    Returns
-    -------
-    : ndarray
-        (N, M) shaped array with IoUs
+    """
+        Computes IoU between bounding boxes.
+        
+        Args
+            box1 (ndarray): (N, 4) shaped array with bboxes
+            box2 (ndarray): (M, 4) shaped array with bboxes
+        
+        Returns
+            ndarray (N, M) shaped array with IoUs
+            
     """
     area = (box2[:, 2] - box2[:, 0]) * (box2[:, 3] - box2[:, 1])
 
@@ -131,10 +151,17 @@ def bbox_iou_numpy(box1, box2):
 
 def non_max_suppression(prediction, num_classes, conf_thres=0.5, nms_thres=0.4):
     """
-    Removes detections with lower object confidence score than 'conf_thres' and performs
-    Non-Maximum Suppression to further filter detections.
-    Returns detections with shape:
-        (x1, y1, x2, y2, object_conf, class_score, class_pred)
+        Removes detections with lower object confidence score than 'conf_thres' and performs
+        Non-Maximum Suppression to further filter detections.
+        
+        Args
+            prediction (torch tensor): tensor with yolo predictions
+            num_classes: number of classication categories
+            conf_thres: Minimum threshold for confidence(default=0.5)
+            nms_thres: Non-maximum suppresion threshold (default=0.4)
+        
+        Returns detections with shape:
+            (x1, y1, x2, y2, object_conf, class_score, class_pred)
     """
 
     # From (center x, center y, width, height) to (x1, y1, x2, y2)
@@ -190,8 +217,20 @@ def non_max_suppression(prediction, num_classes, conf_thres=0.5, nms_thres=0.4):
 
 
 def build_targets(
-    pred_boxes, pred_conf, pred_cls, target, anchors, num_anchors, num_classes, grid_size, ignore_thres, img_dim
-):
+    pred_boxes, 
+    pred_conf, 
+    pred_cls, 
+    target, 
+    anchors, 
+    num_anchors, 
+    num_classes, 
+    grid_size, 
+    ignore_thres, 
+    img_dim):
+    
+    """
+        Build target anchors for yolo network
+    """
     nB = target.size(0)
     nA = num_anchors
     nC = num_classes
@@ -259,5 +298,8 @@ def build_targets(
 
 
 def to_categorical(y, num_classes):
-    """ 1-hot encodes a tensor """
+    """ 
+        Get one-hot tensor with category label encoded 
+    
+    """
     return torch.from_numpy(np.eye(num_classes, dtype="uint8")[y])

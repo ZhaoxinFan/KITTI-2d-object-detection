@@ -4,7 +4,8 @@ Created on Tue Apr 16 12:48:04 2019
 
 @author: Keshik
 
-Source: https://github.com/eriklindernoren/PyTorch-YOLOv3
+Sources 
+    https://github.com/eriklindernoren/PyTorch-YOLOv3
 """
 
 def parse_model_config(path):
