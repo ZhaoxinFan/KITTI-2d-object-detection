@@ -17,7 +17,7 @@ The goal of this project is to detect object from a number of visual object clas
 - Cyclist
 
 ## Data
-The label data provided in the KITTI dataset corresponding to a particular image includes the following fields. The labels also include 3D data which is out of scope for this paper.
+The training and test data are ~6GB each (12GB in total). The data can be downloaded at http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark .The label data provided in the KITTI dataset corresponding to a particular image includes the following fields. The labels also include 3D data which is out of scope for this project.
 
 
 | Key       	| Values 	| Description                                                                                                           	|
@@ -36,12 +36,12 @@ Since the only has 7481 labelled images, it is essential to incorporate data aug
 - Adding Gaussian Noise with per-channel probability
 - Random dropout of pixels
 
-Geometric augmentations are thus hard to perform since it requires modification of every bounding box coordinate and results in changing the aspect ratio of images. I plan to implement Geometric augmentations in the next release. Examples of image embossing, brightness/ color jitter and Dropout are shown below.
+Geometric augmentations are thus hard to perform since it requires modification of every bounding box coordinate and results in changing the aspect ratio of images. We plan to implement Geometric augmentations in the next release. Examples of image embossing, brightness/ color jitter and Dropout are shown below.
 
 ![alt text](./readme_resources/augmentations_final.png)
 
 **Adding Label Noise**  
-To allow adding noise to our labels to make the model robust, I performed side by side of cropping images where the number of pixels were chosen from a uniform distribution of [-5px, 5px] where values less than 0 correspond to no crop.
+To allow adding noise to our labels to make the model robust, We performed side by side of cropping images where the number of pixels were chosen from a uniform distribution of [-5px, 5px] where values less than 0 correspond to no crop.
 
 ## Data splits
 We used an 80 / 20 split for train and validation sets respectively since a separate test set is provided.
@@ -52,13 +52,13 @@ We use mean average precision (mAP) as the performance metric here.
 **mAP:** It is average of AP over all the object categories.  
 
 ## Neural Network Architecture
-I experimented with faster R-CNN, SSD (single shot detector) and YOLO networks.  I chose YOLO V3 as the network architecture for the following reasons,
+We experimented with faster R-CNN, SSD (single shot detector) and YOLO networks. We chose YOLO V3 as the network architecture for the following reasons,
 1. YOLO V3 is relatively lightweight compared to both SSD and faster R-CNN, allowing me to iterate faster.
 2. Costs associated with GPUs encouraged me to stick to YOLO V3.
-3. I wanted to evaluate performance real-time, which requires very fast inference time and hence I chose YOLO V3 architecture.
+3. We wanted to evaluate performance real-time, which requires very fast inference time and hence we chose YOLO V3 architecture.
 
 ## Implementation
-I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework.
+We implemented YoloV3 with Darknet backbone using Pytorch deep learning framework.
 ![alt text](./readme_resources/yolov3.png)
 
 ## Results
@@ -80,4 +80,10 @@ I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework
     * /config: contains yolo configuration file
     * /readme_resources: 
 3. Run the main function in main.py with required arguments. The codebase is clearly documented with clear details on how to execute the functions. You need to interface only with this function to reproduce the code.
+4. Pre-trained weights can be obtained at https://drive.google.com/open?id=1qvv5j59Vx3rg9GZCYW1WwlvQxWg4aPlL
 
+## References
+- https://github.com/eriklindernoren/PyTorch-YOLOv3
+- https://github.com/ssaru/convert2Yolo
+- https://github.com/BobLiu20/YOLOv3_PyTorch
+- https://github.com/packyan/PyTorch-YOLOv3-kitti
