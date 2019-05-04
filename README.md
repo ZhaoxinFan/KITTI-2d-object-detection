@@ -67,8 +67,7 @@ We implemented YoloV3 with Darknet backbone using Pytorch deep learning framewor
 
 ## Test on samples
 Use the detect.py script to test the model on sample images at /data/samples. Feel free to put your own test images here. The results are saved in /output directory. Some inference results are shown below.
-![alt text](./output/0.png)
-![alt text](./output/1.png)
+![alt text](./readme_resources/detection_collage.jpg)
 
 ## How to reproduce the code
 1. Install dependencies : pip install -r requirements.txt
