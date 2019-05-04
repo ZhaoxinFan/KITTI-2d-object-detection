@@ -7,7 +7,8 @@ The goal of this project is to detect object from a number of visual object clas
 - Cyclist
 
 ## Data
-The label data provided in the KITTI dataset corresponding to a particular image includes the following fields.
+The label data provided in the KITTI dataset corresponding to a particular image includes the following fields. The labels also include 3D data which is out of scope for this paper.
+
 
 | Key       	| Values 	| Description                                                                                                           	|
 |-----------	|--------	|-----------------------------------------------------------------------------------------------------------------------	|
