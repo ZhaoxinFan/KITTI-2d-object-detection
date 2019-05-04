@@ -10,6 +10,7 @@
   * [Results](#results)
   * [Test on Samples](#test-on-samples)
   * [How to reproduce the code](#how-to-reproduce-the-code)
+  * [References](#references)
   
 ## Problem Statement
 The goal of this project is to detect object from a number of visual object classes in realistic scenes. There are 7 object classes:
