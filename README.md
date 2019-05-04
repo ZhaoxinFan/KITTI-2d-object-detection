@@ -81,3 +81,9 @@ I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework
     * /readme_resources: 
 3. Run the main function in main.py with required arguments. The codebase is clearly documented with clear details on how to execute the functions. You need to interface only with this function to reproduce the code.
 4. Pre-trained weights can be obtained at https://drive.google.com/open?id=1qvv5j59Vx3rg9GZCYW1WwlvQxWg4aPlL
+
+## References
+- https://github.com/eriklindernoren/PyTorch-YOLOv3
+- https://github.com/ssaru/convert2Yolo
+- https://github.com/BobLiu20/YOLOv3_PyTorch
+- https://github.com/packyan/PyTorch-YOLOv3-kitti
