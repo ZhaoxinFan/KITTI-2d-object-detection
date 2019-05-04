@@ -32,4 +32,4 @@ Geometric augmentations are thus hard to perform since it requires modification 
 ![alt text](./readme_resources/augmentations_final.png)
 
 **Adding Label Noise**  
-To allow adding noise to our labels to make the model robust, we performed side by side of cropping images where the number of pixels were chosen from a uniform distribution of [-5px, 5px] where values less than 0 correspond to no crop.
+To allow adding noise to our labels to make the model robust, I performed side by side of cropping images where the number of pixels were chosen from a uniform distribution of [-5px, 5px] where values less than 0 correspond to no crop.
