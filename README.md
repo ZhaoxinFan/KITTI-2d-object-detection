@@ -45,7 +45,7 @@ We use mean average precision (mAP) as the performance metric here.
 ## Neural Network Architecture
 I experimented with faster R-CNN, SSD (single shot detector) and YOLO networks.
 
-**Design Choice and Reasoning** 
+**Design Choice and Reasoning**   
 I chose YOLO V3 as the network architecture for experiments for the following reasons,
 1. YOLO V3 is relatively lightweight compared to both SSD and faster R-CNN, allowing me to iterate faster.
 2. Costs associated with GPUs encouraged me to stick to YOLO V3.
