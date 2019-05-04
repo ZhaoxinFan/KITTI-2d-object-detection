@@ -20,15 +20,13 @@ The label data provided in the KITTI dataset corresponding to a particular image
 
 
 ## Data Augmentations
-Since the only has 7481 labelled images, it is essential to incorporate data augmentations to create more variability in available data.
-
-Image Augmentations
-The following list provides the types of image augmentations we performed.
+Since the only has 7481 labelled images, it is essential to incorporate data augmentations to create more variability in available data. The following list provides the types of image augmentations performed.
 - Image Embossing
 - Blur (Gaussian, Average, Median)
 - Brightness variation with per-channel probability
 - Adding Gaussian Noise with per-channel probability
 - Random dropout of pixels
 
-Geometric augmentations are thus hard to perform since it requires modification of every bounding box coordinate and results in changing the aspect ratio of images. 
+Geometric augmentations are thus hard to perform since it requires modification of every bounding box coordinate and results in changing the aspect ratio of images. I plan to implement Geometric augmentations in the next release.
 
+![alt text](./readme_resources/augmentations_final.png)
