@@ -18,7 +18,6 @@ The label data provided in the KITTI dataset corresponding to a particular image
 | alpha     	| 1      	| Observation angle of object ranging from [-pi, pi]                                                                    	|
 | bbox      	| 4      	| 2D bounding box of object in the image (0-based index): contains left, top, right, bottom pixel coordinates           	|
 
-
 ## Data Augmentations
 Since the only has 7481 labelled images, it is essential to incorporate data augmentations to create more variability in available data. The following list provides the types of image augmentations performed.
 - Image Embossing
@@ -43,11 +42,24 @@ We use mean average precision (mAP) as the performance metric here.
 **mAP:** It is average of AP over all the object categories.  
 
 ## Neural Network Architecture
-I experimented with faster R-CNN, SSD (single shot detector) and YOLO networks.
-
-**Design Choice and Reasoning**   
-I chose YOLO V3 as the network architecture for experiments for the following reasons,
+I experimented with faster R-CNN, SSD (single shot detector) and YOLO networks.  I chose YOLO V3 as the network architecture for the following reasons,
 1. YOLO V3 is relatively lightweight compared to both SSD and faster R-CNN, allowing me to iterate faster.
 2. Costs associated with GPUs encouraged me to stick to YOLO V3.
 3. I wanted to evaluate performance real-time, which requires very fast inference time and hence I chose YOLO V3 architecture.
+
+## Implementation
+I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework.
+
+## How to reproduce the code
+1. Install dependencies : pip install -r requirements.txt
+2. Directory structure
+- /src: contains source code
+- /data: data directory to download and extract KITTI 2D dataset (You should create this directory manually)
+  - train/
+    - images/ (Place all training images here)
+    - yolo_labels/
+  - test/
+    - images/ (Place all test images here)
+  - names.txt
+  - readme.txt
 
