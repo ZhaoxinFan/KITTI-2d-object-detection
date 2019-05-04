@@ -76,6 +76,7 @@ Use the detect.py script to test the model on sample images at /data/samples. Fe
 2. Directory structure
     * /src: contains source code
     * /data: data directory for KITTI 2D dataset 
+      - samples/
       - train/
         - images/ (Place all training images here)
         - yolo_labels/ (This is included in the repo)
