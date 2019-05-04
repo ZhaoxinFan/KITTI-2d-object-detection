@@ -33,3 +33,14 @@ Geometric augmentations are thus hard to perform since it requires modification 
 
 **Adding Label Noise**  
 To allow adding noise to our labels to make the model robust, I performed side by side of cropping images where the number of pixels were chosen from a uniform distribution of [-5px, 5px] where values less than 0 correspond to no crop.
+
+## Data splits
+We used an 80 / 20 split for train and validation sets respectively since a separate test set is provided.
+
+## Evaluation Metrics
+We use mean average precision (mAP) as the performance metric here.  
+Average Precision: It is the average precision over multiple IoU values.  
+mAP: It is average of AP over all the object categories.  
+
+
+
