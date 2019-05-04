@@ -1,4 +1,15 @@
 # KITTI 2D Object Detection
+- [KITTI 2D Object Detection](#kitti-2d-object-detection)
+  * [Problem Statement](#problem-statement)
+  * [Data](#data)
+  * [Data Augmentations](#data-augmentations)
+  * [Data splits](#data-splits)
+  * [Evaluation Metrics](#evaluation-metrics)
+  * [Neural Network Architecture](#neural-network-architecture)
+  * [Implementation](#implementation)
+  * [Results](#results)
+  * [How to reproduce the code](#how-to-reproduce-the-code)
+  
 ## Problem Statement
 The goal of this project is to detect object from a number of visual object classes in realistic scenes. There are 7 object classes:
 - Car, Van, Truck, Tram
@@ -60,7 +71,6 @@ I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework
     * /data: data directory for KITTI 2D dataset 
       - train/
         - images/ (Place all training images here)
-        - labels/ (This is included in the repo)
         - yolo_labels/ (This is included in the repo)
       - test/
         - images/ (Place all test images here)
