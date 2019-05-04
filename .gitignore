@@ -10,7 +10,6 @@ __pycache__/
 *data/train/images
 *data/test/images
 *data/train/labels
-*output/
 data/train.zip
 
 # checkpoints
