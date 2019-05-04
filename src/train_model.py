@@ -28,7 +28,7 @@ def train(model,
     """
         Train a deep neural yolo network model for a single epoch 
         
-        Args:
+        Args
             model: pytorch model object
             device: cuda or cpu
             optimizer: pytorch optimizer object
