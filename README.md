@@ -39,8 +39,8 @@ We used an 80 / 20 split for train and validation sets respectively since a sepa
 
 ## Evaluation Metrics
 We use mean average precision (mAP) as the performance metric here.  
-Average Precision: It is the average precision over multiple IoU values.  
-mAP: It is average of AP over all the object categories.  
+**Average Precision:** It is the average precision over multiple IoU values.  
+**mAP:** It is average of AP over all the object categories.  
 
 
 
