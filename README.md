@@ -50,6 +50,11 @@ I experimented with faster R-CNN, SSD (single shot detector) and YOLO networks. 
 ## Implementation
 I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework.
 
+## Results
+### Training History
+![alt text](./readme_resources/exp1-loss-final.jpg)
+![alt text](./readme_resources/exp3-ap.jpg)
+
 ## How to reproduce the code
 1. Install dependencies : pip install -r requirements.txt
 2. Directory structure
