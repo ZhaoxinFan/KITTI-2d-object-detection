@@ -27,6 +27,6 @@ Since the only has 7481 labelled images, it is essential to incorporate data aug
 - Adding Gaussian Noise with per-channel probability
 - Random dropout of pixels
 
-Geometric augmentations are thus hard to perform since it requires modification of every bounding box coordinate and results in changing the aspect ratio of images. I plan to implement Geometric augmentations in the next release.
+Geometric augmentations are thus hard to perform since it requires modification of every bounding box coordinate and results in changing the aspect ratio of images. I plan to implement Geometric augmentations in the next release. Examples of image embossing, brightness/ color jitter and Dropout are shown below.
 
 ![alt text](./readme_resources/augmentations_final.png)
