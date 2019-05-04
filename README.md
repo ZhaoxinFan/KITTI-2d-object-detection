@@ -1,7 +1,7 @@
 # KITTI 2D Object Detection
 
 # Table of contents
-1. [Problem Statement](#Problem Statement)
+1. [Problem Statement](##problemstatement)
 2. [Some paragraph](#paragraph1)
     1. [Sub paragraph](#subparagraph1)
 3. [Another paragraph](#paragraph2)
