@@ -52,8 +52,8 @@ I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework
 
 ## Results
 ### Training History
-![alt text](./readme_resources/exp1-loss-final.jpg)
-![alt text](./readme_resources/exp3-ap.jpg)
+![alt text](./readme_resources/exp1-loss-final.JPG)
+![alt text](./readme_resources/exp3-ap.JPG)
 
 ## How to reproduce the code
 1. Install dependencies : pip install -r requirements.txt
