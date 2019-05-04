@@ -16,6 +16,7 @@ import torch
 import imgaug as ia
 from imgaug import augmenters as iaa
 import random
+import glob
 
 class KITTI2D(Dataset):
     """
@@ -283,12 +284,46 @@ class KITTI2D(Dataset):
     
         return seq.augment_image(np.asarray(image))
 
-# Test here
-#kitti = KITTI2D("../data/train/images/", "../data/train/yolo_labels/", fraction= 1.0, train=True)
-#img_path, img, labels = kitti.__getitem__(1000)
-##print(img_path, img, labels)
-#plt.imshow(img.permute(1, 2, 0))
-#plt.show()
+
+
+class ImageFolder(Dataset):
+    """
+        Pytorch Dataset class for KITTI-2D Image evaluation
+        
+        Args
+            folder_path (string): Directory holding the KITTI-2D Dataset Evaluation images
+            img_size (int): Size of the image
+
+    """
+    def __init__(self, folder_path, img_size=416):
+        self.files = sorted(glob.glob('%s/*.*' % folder_path))
+        self.img_shape = (img_size, img_size)
+
+    def __getitem__(self, index):
+        img_path = self.files[index % len(self.files)]
+        # Extract image
+        img = np.array(Image.open(img_path))
+        h, w, _ = img.shape
+        dim_diff = np.abs(h - w)
+        # Upper (left) and lower (right) padding
+        pad1, pad2 = dim_diff // 2, dim_diff - dim_diff // 2
+        # Determine padding
+        pad = ((pad1, pad2), (0, 0), (0, 0)) if h <= w else ((0, 0), (pad1, pad2), (0, 0))
+        # Add padding
+        input_img = np.pad(img, pad, 'constant', constant_values=127.5) / 255.
+        # Resize and normalize
+        input_img = resize(input_img, (*self.img_shape, 3), mode='reflect')
+        # Channels-first
+        input_img = np.transpose(input_img, (2, 0, 1))
+        # As pytorch tensor
+        input_img = torch.from_numpy(input_img).float()
+
+        return img_path, input_img
+
+    def __len__(self):
+        return len(self.files)
+
+
 
 
 
