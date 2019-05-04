@@ -8,6 +8,7 @@
   * [Neural Network Architecture](#neural-network-architecture)
   * [Implementation](#implementation)
   * [Results](#results)
+  * [Test on Samples](#test-on-samples)
   * [How to reproduce the code](#how-to-reproduce-the-code)
   
 ## Problem Statement
