@@ -54,12 +54,16 @@ I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework
 1. Install dependencies : pip install -r requirements.txt
 2. Directory structure
 - /src: contains source code
-- /data: data directory to download and extract KITTI 2D dataset (You should create this directory manually)
+- /data: data directory for KITTI 2D dataset 
   - train/
     - images/ (Place all training images here)
-    - yolo_labels/
+    - labels/ (This is included in the repo)
+    - yolo_labels/ (This is included in the repo)
   - test/
     - images/ (Place all test images here)
-  - names.txt
-  - readme.txt
+  - names.txt (Contains the object categories)
+  - readme.txt (Official KITTI Data Documentation)
+- /config: contains yolo configuration file
+- /readme_resources: 
+3. Run the main function in main.py with required arguments. The codebase is clearly documented with clear details on how to execute the functions. You need to interface only with this function to reproduce the code.
 
