@@ -17,7 +17,7 @@ The goal of this project is to detect object from a number of visual object clas
 - Cyclist
 
 ## Data
-The training and test data are ~6GB each (12GB in total). The data can be downloaded at http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark .The label data provided in the KITTI dataset corresponding to a particular image includes the following fields. The labels also include 3D data which is out of scope for this paper.
+The training and test data are ~6GB each (12GB in total). The data can be downloaded at http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark .The label data provided in the KITTI dataset corresponding to a particular image includes the following fields. The labels also include 3D data which is out of scope for this project.
 
 
 | Key       	| Values 	| Description                                                                                                           	|
