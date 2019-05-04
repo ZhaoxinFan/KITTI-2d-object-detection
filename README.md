@@ -51,10 +51,7 @@ I experimented with faster R-CNN, SSD (single shot detector) and YOLO networks. 
 I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework.
 
 ## Results
-### Loss vs Iterations
 ![alt text](./readme_resources/exp1-loss-final.JPG)
-
-### Average Precision vs Epochs
 ![alt text](./readme_resources/exp3-ap.JPG)
 
 ## How to reproduce the code
