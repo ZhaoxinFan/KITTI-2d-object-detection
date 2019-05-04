@@ -24,11 +24,11 @@ Since the only has 7481 labelled images, it is essential to incorporate data aug
 
 Image Augmentations
 The following list provides the types of image augmentations we performed.
--Image Embossing
--Blur (Gaussian, Average, Median)
--Brightness variation with per-channel probability
--Adding Gaussian Noise with per-channel probability
--Random dropout of pixels
+- Image Embossing
+- Blur (Gaussian, Average, Median)
+- Brightness variation with per-channel probability
+- Adding Gaussian Noise with per-channel probability
+- Random dropout of pixels
 
 Geometric augmentations are thus hard to perform since it requires modification of every bounding box coordinate and results in changing the aspect ratio of images. 
 
