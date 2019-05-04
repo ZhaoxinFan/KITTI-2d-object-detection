@@ -7,8 +7,8 @@ __pycache__/
 *.so
 
 # data files
-*data/train
-*data/test
+*data/train/images
+*data/test/images
 *data/train/labels
 *output/
 data/train.zip
