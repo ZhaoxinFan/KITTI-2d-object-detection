@@ -80,4 +80,4 @@ I implemented YoloV3 with Darknet backbone using Pytorch deep learning framework
     * /config: contains yolo configuration file
     * /readme_resources: 
 3. Run the main function in main.py with required arguments. The codebase is clearly documented with clear details on how to execute the functions. You need to interface only with this function to reproduce the code.
-
+4. Pre-trained weights can be obtained at https://drive.google.com/open?id=1qvv5j59Vx3rg9GZCYW1WwlvQxWg4aPlL
